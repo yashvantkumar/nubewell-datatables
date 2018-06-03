@@ -1,0 +1,11 @@
+.mainTable {
+    width: 80%;
+    padding-left: 250px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.subTable {
+    width: 100%;
+    padding-left: 50px; 
+}

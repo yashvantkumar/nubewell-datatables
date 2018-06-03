@@ -1,0 +1,30 @@
+[
+    {
+        "interface": "datatype 1/1",
+        "speed" : "10 Gbps",
+        "bandwidth": "4",
+        "port_type": "LAN",
+        "actions": "5",
+        "sub": {
+            "vlan_name": "datapath 1/1.10",
+            "vlan_number": "6",
+            "speed": "5 Gbps",
+            "port_type": "LAN",
+            "action": "7"
+        }
+    },
+    {
+        "interface": "datatype 1/2",
+        "speed" : "20 Gbps",
+        "bandwidth": "8",
+        "port_type": "WAN",
+        "actions": "5",
+        "sub": {
+            "vlan_name": "datatype 1/1.20",
+            "vlan_number": "20",
+            "speed": "5 Gbps",
+            "port_type": "WAN",
+            "action": "7"
+        }
+    }
+]

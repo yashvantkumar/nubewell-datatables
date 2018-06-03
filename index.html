@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <meta charset="utf-8">
+        <title>Nubewell datatables</title>  
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./node_modules/datatables.net-dt/css/jquery.dataTables.css">      
+    </head>
+
+    <body ng-controller="mainController">
+        <div class="mainTable">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th></th>                        
+                        <th>Interface</th>
+                        <th>Speed</th>
+                        <th>Bandwidth</th>
+                        <th>Port type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat-start="a in data">
+                        <td ng-click="toggleHiddenRow(a.interface)"><i class="fas fa-plus-circle" style="color: green"></i></td>
+                        <td>{{a.interface}}</td>
+                        <td>{{a.speed}}</td>
+                        <td>{{a.bandwidth}}</td>
+                        <td>{{a.port_type}}</td>
+                        <td ng-click="editModal(a)"><i class="fas fa-edit" style="color: teal"></i></td>                        
+                    </tr>
+                    <tr ng-repeat-end ng-show="activeRow==a.interface">
+                        <td colspan="6">
+                            <div class="subTable">
+                                <table id="table_id" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th></th>                        
+                                            <th>VLAN name</th>
+                                            <th>VLAN number</th>
+                                            <th>Speed</th>
+                                            <th>Bandwidth</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        <tbody>
+                                            <tr ng-repeat="a in data">
+                                                <td></td>
+                                                <td>{{a.sub.vlan_name}}</td>
+                                                <td>{{a.sub.vlan_number}}</td>
+                                                <td>{{a.sub.speed}}</td>
+                                                <td>{{a.sub.bandwidth}}</td>
+                                                <td><i class="fas fa-edit" style="color: teal"></i></td>                                        
+                                            </tr>
+                                        </tbody>
+                                    </thead>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal" id="editModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Interface</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{values.interface}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Speed</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="{{values.speed}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Bandwidth</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="{{values.bandwidth}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Port type</label>
+                                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="{{values.port_type}}">
+                            </div>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" charset="utf8" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="./node_modules/jquery/dist/jquery.min.js"></script>    
+    <script type="text/javascript" charset="utf8" src="./node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script> 
+</html>
