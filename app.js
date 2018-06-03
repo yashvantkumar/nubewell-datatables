@@ -6,6 +6,8 @@ App.controller('mainController', ['$scope', '$http',
         $scope.values = '';
         $scope.selectedRow = 0;
         $scope.activeRow = '';
+
+        //Getting data from JSON file
         $http({
             type: 'GET',
             url: './data.json',
@@ -14,6 +16,7 @@ App.controller('mainController', ['$scope', '$http',
             $scope.data = d.data;
         });
 
+        //click event for editing respected column
         $scope.editModal = (a) => {
             $('#editModal').modal({});
             $scope.values = a;
@@ -24,6 +27,7 @@ App.controller('mainController', ['$scope', '$http',
             $scope.activeRow = id;
         };  
 
+        //Initializes the datatables
         $(document).ready( function () {
             $('#table_id').DataTable();
         } );
